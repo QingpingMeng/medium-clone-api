@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "dotenv": "^5.0.1",
+    "jsonwebtoken": "^8.2.0",
     "mongoose": "^5.0.9",
     "mongoose-unique-validator": "^2.0.0",
     "serverless-offline": "^3.18.0"
@@ -14,12 +15,13 @@
     "build-ts": "tsc"
   },
   "devDependencies": {
-    "@types/crypto-js": "^3.1.38",
-    "@types/node": "^9.4.7",
     "@types/aws-lambda": "^0.0.33",
+    "@types/crypto-js": "^3.1.38",
     "@types/mongodb": "^3.0.7",
+    "@types/jsonwebtoken": "^7.2.5",
     "@types/mongoose": "^5.0.7",
     "@types/mongoose-unique-validator": "^1.0.1",
+    "@types/node": "^9.4.7",
     "serverless-plugin-typescript": "^1.1.5",
     "ts-node": "^5.0.1",
     "tslint": "^5.9.1",

@@ -1,4 +1,5 @@
 import { Handler, Context, Callback } from "aws-lambda";
+import { UserSchema } from "./src/models/User";
 
 interface HelloResponse {
   statusCode: number;
@@ -6,6 +7,8 @@ interface HelloResponse {
 }
 
 const hello: Handler = (event: any, context: Context, callback: Callback) => {
+  const schema = UserSchema;
+  console.log(schema);
   const response: HelloResponse = {
     statusCode: 200,
     body: JSON.stringify({
