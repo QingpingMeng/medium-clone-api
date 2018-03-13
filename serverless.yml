@@ -74,24 +74,184 @@ functions:
       - http:
           path: api/hello
           method: get
+          authorizer:
+            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
 
-# functions:
-#   login:
-#     handler: login
-#     events:
-#       - http:
-#         path: /api/users/login
-#         method: post
-#         cors: true
+  login:
+    handler: handler.login
+    events:
+      - http:
+          path: /api/users/login
+          method: post
+          cors: true
 
-# functions:
-#   register:
-#     handler: register
-#     events:
-#       - http:
-#         path: /api/users/
-#         method: post
-#         cors: true
+  currentUser:
+    handler: handler.currentUser
+    events:
+      - http:
+          path: /api/user
+          method: get
+          cors: true
+          authorizer:
+            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+
+  updateUser:
+    handler: handler.updateUser
+    events:
+      - http:
+          path: /api/user
+          method: put
+          cors: true
+          authorizer:
+            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+
+  getProfile:
+    handler: handler.getProfile
+    events:
+      - http:
+          path: /api/profiels/{username}
+          cors: true
+          method: get
+
+  followUser:
+    handler: handler.followUser
+    events:
+      - http:
+          path: /api/profiles/{username}/follow
+          method: post
+          cors: true
+          authorizer:
+            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+        
+  unfollowUser:
+    handler: handler.unfollowUser
+    events:
+      - http:
+          path: /api/profiles/{username}/follow
+          method: delete
+          cors: true
+          authorizer:
+            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+        
+  listArticles:
+    handler: handler.listArticles
+    events:
+      - http:
+          path: /api/articles
+          method: get
+          cors: true
+
+  feedArticles:
+    handler: handler.feedArticles
+    events:
+      - http:
+          path: /api/articles/feed
+          method: get
+          cors: true
+          authorizer:
+            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+        
+  getArticle:
+    handler: handler.getArticle
+    events:
+      - http:
+          path: /api/articles/{slug}
+          method: get
+          cors: true
+
+  createArticle:
+    handler: handler.createArticle
+    events:
+      - http:
+          path: /api/articles/
+          method: post
+          cors: true
+          authorizer:
+            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+
+  updateArticle:
+    handler: handler.updateArticle
+    events:
+      - http:
+          path: /api/articles/{slug}
+          method: put
+          cors: true
+          authorizer:
+            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+
+  deleteArticle:
+    handler: handler.deleteArticle
+    events:
+      - http:
+          path: /api/articles/{slug}
+          method: delete
+          cors: true
+          authorizer:
+            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+          
+  addCommentToArticle:
+    handler: handler.addCommentToArticle
+    events:
+      - http:
+          path: /api/articles/{slug}/comments
+          method: post
+          cors: true
+          authorizer:
+            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+
+  getCommentsFromArticle:
+    handler: handler.getCommentsFromArticle
+    events:
+      - http:
+          path: /api/articles/{slug}/comments
+          method: get
+          cors: true
+
+  deleteComment:
+    handler: handler.deleteComment
+    events:
+      - http:
+          path: /api/articles/{slug}/comments/{id}
+          method: get
+          cors: true
+          authorizer:
+            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+
+  favoriteArticle:
+    handler: handler.favoriteArticle
+    events:
+      - http:
+          path: /api/articles/{slug}/favorite
+          method: post
+          cors: true
+          authorizer:
+            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+
+  unfavoriteArticle:
+    handler: handler.unfavoriteArticle
+    events:
+      - http:
+          path: /api/articles/{slug}/favorite
+          method: delete
+          cors: true
+          authorizer:
+            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+
+  getTags:
+    handler: handler.getTags
+    events:
+      - http:
+          path: /api/tags
+          method: get
+          cors: true
+
+  register:
+    handler: handler.signup
+    events:
+      - http:
+          path: /api/users/
+          method: post
+          cors: true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
