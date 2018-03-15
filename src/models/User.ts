@@ -13,12 +13,20 @@ export interface IUser {
     image: string;
 }
 
+export interface IProfile {
+    username: string;
+    bio: string;
+    image: string;
+     following: boolean;
+}
+
 export interface IUserModel extends IUser, Document {
     hash: string;
     salt: string;
     setPassword: (password: string) => void;
     validPassword: (password: string) => boolean;
     toAuthJSON: () => IUser;
+    toProfileJSONFor: (user?: IUser) => IProfile;
 }
 
 export const UserSchema = new Schema(
@@ -85,6 +93,17 @@ UserSchema.methods.toAuthJSON = function(): IUser {
         token: this.generateJWT(),
         bio: this.bio,
         image: this.image
+    };
+};
+
+UserSchema.methods.toProfileJSONFor = function(user: IUser) {
+    return {
+        username: this.username,
+        bio: this.bio,
+        image:
+            this.image ||
+            'https://static.productionready.io/images/smiley-cyrus.jpg',
+        following: user ? /* user.isFollowing(this._id) */ true : false
     };
 };
 

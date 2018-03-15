@@ -14,27 +14,35 @@ export const authorizer: Handler = (
     callback: Callback
 ) => {
     const token = event.authorizationToken;
+    validateToken(token)
+        .then(decoded => {
+            console.log(decoded);
+            return callback(
+                undefined,
+                generatePolicy(decoded.id, 'Allow', event.methodArn)
+            );
+        })
+        .catch(() => callback(new Error('Unauthorized')));
+};
+
+export const validateToken = (token: string) => {
     if (!token) {
-        return callback(new Error('unauthrozied'));
+        return Promise.reject(undefined);
     }
 
-    const tokenParts = event.authorizationToken.split(' ');
+    const tokenParts = token.split(' ');
     const tokenValue = tokenParts[1];
 
     if (!tokenValue) {
         // no auth token!
-        return callback(new Error('Unauthorized'));
+        return Promise.reject(false);
     }
-    console.log('here');
+
     try {
         const decoded = jwt.verify(tokenValue, secret) as { id: string };
-        return callback(
-            undefined,
-            generatePolicy(decoded.id, 'Allow', event.methodArn)
-        );
+        return Promise.resolve(decoded);
     } catch (error) {
-        console.log('Invalid Token', error);
-        return callback(new Error('Unauthorized'));
+        return Promise.reject(undefined);
     }
 };
 
@@ -56,6 +64,5 @@ const generatePolicy = (
             ]
         }
     };
-    authResponse.principalId = principalId;
     return authResponse;
 };

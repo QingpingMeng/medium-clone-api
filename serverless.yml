@@ -96,21 +96,11 @@ functions:
           cors: true
           authorizer: auth
 
-  updateUser:
-    handler: handler.updateUser
-    events:
-      - http:
-          path: /api/user
-          method: put
-          cors: true
-          authorizer:
-            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
-
   getProfile:
     handler: handler.getProfile
     events:
       - http:
-          path: /api/profiels/{username}
+          path: /api/profiles/{username}
           cors: true
           method: get
 
