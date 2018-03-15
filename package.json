@@ -8,17 +8,20 @@
     "jsonwebtoken": "^8.2.0",
     "mongoose": "^5.0.9",
     "mongoose-unique-validator": "^2.0.0",
+    "serverless": "^1.26.1",
     "serverless-offline": "^3.18.0"
   },
   "scripts": {
     "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "build-ts": "tsc"
+    "build-ts": "tsc",
+    "start": "./node_modules/.bin/serverless offline -s dev --skipCacheInvalidation",
+    "debug": "export SLS_DEBUG=* && node --inspect ./node_modules/.bin/serverless offline -s dev --skipCacheInvalidation"
   },
   "devDependencies": {
     "@types/aws-lambda": "^0.0.33",
     "@types/crypto-js": "^3.1.38",
-    "@types/mongodb": "^3.0.7",
     "@types/jsonwebtoken": "^7.2.5",
+    "@types/mongodb": "^3.0.7",
     "@types/mongoose": "^5.0.7",
     "@types/mongoose-unique-validator": "^1.0.1",
     "@types/node": "^9.4.7",

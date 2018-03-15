@@ -9,3 +9,4 @@ jspm_packages
 .build
 
 variables.env
+src/.DS_Store

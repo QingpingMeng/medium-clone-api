@@ -1,6 +1,8 @@
 import { Handler, Context, Callback } from 'aws-lambda';
 export { login } from './src/auth/login';
 export { signup } from './src/auth/signup';
+export { authorizer } from './src/auth/authorizer';
+export { currentUser } from './src/auth/currentUser';
 
 require('dotenv').config({ path: './variables.env' });
 

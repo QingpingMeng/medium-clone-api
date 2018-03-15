@@ -68,15 +68,17 @@ package:
     handler.ts
 
 functions:
+  auth:
+    handler: handler.authorizer
+    cors: true
+
   hello:
     handler: handler.hello
     events:
       - http:
           path: api/hello
           method: get
-          authorizer:
-            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
-
+      
   login:
     handler: handler.login
     events:
@@ -92,8 +94,7 @@ functions:
           path: /api/user
           method: get
           cors: true
-          authorizer:
-            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+          authorizer: auth
 
   updateUser:
     handler: handler.updateUser
