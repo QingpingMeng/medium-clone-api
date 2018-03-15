@@ -17,16 +17,19 @@ export interface IProfile {
     username: string;
     bio: string;
     image: string;
-     following: boolean;
+    following: boolean;
 }
 
 export interface IUserModel extends IUser, Document {
     hash: string;
     salt: string;
+    following: string[];
     setPassword: (password: string) => void;
     validPassword: (password: string) => boolean;
     toAuthJSON: () => IUser;
     toProfileJSONFor: (user?: IUser) => IProfile;
+    follow: (userId: string) => Promise<Document>;
+    isFollowing: (userId: string) => boolean;
 }
 
 export const UserSchema = new Schema(
@@ -49,6 +52,7 @@ export const UserSchema = new Schema(
         },
         bio: String,
         image: String,
+        following: [{ type: Schema.Types.ObjectId, ref: 'User' }],
         hash: String,
         salt: String
     },
@@ -96,15 +100,28 @@ UserSchema.methods.toAuthJSON = function(): IUser {
     };
 };
 
-UserSchema.methods.toProfileJSONFor = function(user: IUser) {
+UserSchema.methods.toProfileJSONFor = function(user: IUserModel) {
     return {
         username: this.username,
         bio: this.bio,
         image:
             this.image ||
             'https://static.productionready.io/images/smiley-cyrus.jpg',
-        following: user ? /* user.isFollowing(this._id) */ true : false
+        following: user ?  user.isFollowing(this._id) : false
     };
+};
+
+UserSchema.methods.follow = function(id: string) {
+    if (this.following.indexOf(id) === -1) {
+        this.following.push(id);
+    }
+    return this.save();
+};
+
+UserSchema.methods.isFollowing = function(id: string): boolean {
+    return this.following.some(function(followId: string) {
+        return followId.toString() === id.toString();
+    });
 };
 
 export const User: Model<IUserModel> = model<IUserModel>('User', UserSchema);

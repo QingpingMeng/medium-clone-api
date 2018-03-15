@@ -18,11 +18,20 @@ export const signup: Handler = (
         .then(() => {
             const response = {
                 statusCode: 200,
-                body: JSON.stringify({user: user.toAuthJSON()})
+                body: JSON.stringify({ user: user.toAuthJSON() })
             };
-            callback(undefined, response);
+            return callback(undefined, response);
         })
         .catch(error => {
-            callback(error);
+            const { errors } = error;
+            Object.keys(errors).map(key => {
+                errors[key] = [errors[key].message];
+            });
+            return callback(undefined, {
+                statusCode: 422,
+                body: JSON.stringify({
+                    errors: errors
+                })
+            });
         });
 };

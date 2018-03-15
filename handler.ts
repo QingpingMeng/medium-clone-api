@@ -3,7 +3,8 @@ export { login } from './src/auth/login';
 export { signup } from './src/auth/signup';
 export { authorizer } from './src/auth/authorizer';
 export { currentUser } from './src/auth/currentUser';
-export {getProfile} from './src/profiles/getProfile';
+export { getProfile } from './src/profiles/getProfile';
+export { followUser } from './src/profiles/followUser';
 
 require('dotenv').config({ path: './variables.env' });
 
