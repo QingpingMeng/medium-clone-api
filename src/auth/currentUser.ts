@@ -16,7 +16,7 @@ export const currentUser: Handler = (
         .then((user: IUserModel) => {
             if (user) {
                 return callback(undefined, {
-                    body: JSON.stringify(user.toAuthJSON()),
+                    body: JSON.stringify({user: user.toAuthJSON()}),
                     statusCode: 200
                 });
             } else {
