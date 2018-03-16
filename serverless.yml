@@ -120,8 +120,7 @@ functions:
           path: /api/profiles/{username}/follow
           method: delete
           cors: true
-          authorizer:
-            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+          authorizer: auth
         
   listArticles:
     handler: handler.listArticles

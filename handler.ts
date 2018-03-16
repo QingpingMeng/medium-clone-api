@@ -5,6 +5,7 @@ export { authorizer } from './src/auth/authorizer';
 export { currentUser } from './src/auth/currentUser';
 export { getProfile } from './src/profiles/getProfile';
 export { followUser } from './src/profiles/followUser';
+export { unfollowUser } from './src/profiles/unfollowUser';
 
 require('dotenv').config({ path: './variables.env' });
 

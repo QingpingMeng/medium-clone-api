@@ -29,6 +29,7 @@ export interface IUserModel extends IUser, Document {
     toAuthJSON: () => IUser;
     toProfileJSONFor: (user?: IUser) => IProfile;
     follow: (userId: string) => Promise<Document>;
+    unfollow: (userId: string) => Promise<Document>;
     isFollowing: (userId: string) => boolean;
 }
 
@@ -116,6 +117,11 @@ UserSchema.methods.follow = function(id: string) {
         this.following.push(id);
     }
     return this.save();
+};
+
+UserSchema.methods.unfollow = function(id: string) {
+  this.following.remove(id);
+  return this.save();
 };
 
 UserSchema.methods.isFollowing = function(id: string): boolean {
