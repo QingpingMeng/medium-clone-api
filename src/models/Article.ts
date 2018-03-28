@@ -1,8 +1,9 @@
 import { Document, Schema, Model, model } from 'mongoose';
-import { IUser } from './User';
+import { IUser, IUserModel } from './User';
 import { IComment } from './Comment';
 
 const uniqueValidator = require('mongoose-unique-validator');
+const slug = require('slug');
 
 export interface IArticle {
     slug: string;
@@ -15,7 +16,10 @@ export interface IArticle {
     author: IUser;
 }
 
-export interface IArticleModel extends IArticle, Document {}
+export interface IArticleModel extends IArticle, Document {
+    toJSONFor: (user?: IUserModel) => IArticleModel;
+    slugify: () => string;
+}
 
 export const ArticleSchema = new Schema(
     {
@@ -32,6 +36,36 @@ export const ArticleSchema = new Schema(
 );
 
 ArticleSchema.plugin(uniqueValidator, { message: 'is already taken' });
+
+ArticleSchema.pre('validate', function(this: IArticleModel, next) {
+    if (!this.slug) {
+        this.slugify();
+    }
+
+    next();
+});
+
+ArticleSchema.methods.slugify = function() {
+    this.slug =
+        slug(this.title) +
+        '-' +
+        ((Math.random() * Math.pow(36, 6)) | 0).toString(36);
+};
+
+ArticleSchema.methods.toJSONFor = function(user?: IUserModel) {
+    return {
+        slug: this.slug,
+        title: this.title,
+        description: this.description,
+        body: this.body,
+        createdAt: this.createdAt,
+        updatedAt: this.updatedAt,
+        tagList: this.tagList,
+        favorited: user ? /* user.isFavorite(this._id) */ true : false,
+        favoritesCount: this.favoritesCount,
+        author: this.author.toProfileJSONFor(user)
+    };
+};
 
 export const Article: Model<IArticleModel> = model<IArticleModel>(
     'Article',

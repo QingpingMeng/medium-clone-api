@@ -24,6 +24,7 @@ export interface IUserModel extends IUser, Document {
     hash: string;
     salt: string;
     following: string[];
+    favorites: string[];
     setPassword: (password: string) => void;
     validPassword: (password: string) => boolean;
     toAuthJSON: () => IUser;
@@ -54,6 +55,7 @@ export const UserSchema = new Schema(
         bio: String,
         image: String,
         following: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+        favorites: [{ type: Schema.Types.ObjectId, ref: 'Article' }],
         hash: String,
         salt: String
     },

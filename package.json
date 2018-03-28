@@ -9,7 +9,8 @@
     "mongoose": "^5.0.9",
     "mongoose-unique-validator": "^2.0.0",
     "serverless": "^1.26.1",
-    "serverless-offline": "^3.18.0"
+    "serverless-offline": "^3.18.0",
+    "slug": "^0.9.1"
   },
   "scripts": {
     "tslint": "tslint -c tslint.json -p tsconfig.json",

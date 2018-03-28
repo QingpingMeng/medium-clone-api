@@ -129,6 +129,14 @@ functions:
           path: /api/articles
           method: get
           cors: true
+          request:
+            parameters:
+              querystrings:
+                tag: false
+                author: false
+                favorited: false
+                limit: false
+                offset: false
 
   feedArticles:
     handler: handler.feedArticles
@@ -155,8 +163,7 @@ functions:
           path: /api/articles/
           method: post
           cors: true
-          authorizer:
-            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+          authorizer: auth
 
   updateArticle:
     handler: handler.updateArticle
