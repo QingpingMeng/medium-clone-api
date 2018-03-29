@@ -145,8 +145,12 @@ functions:
           path: /api/articles/feed
           method: get
           cors: true
-          authorizer:
-            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+          request:
+            parameters:
+              querystrings:
+                limit: false
+                offset: false
+          authorizer: auth
         
   getArticle:
     handler: handler.getArticle
