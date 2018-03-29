@@ -176,8 +176,7 @@ functions:
           path: /api/articles/{slug}
           method: put
           cors: true
-          authorizer:
-            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+          authorizer: auth
 
   deleteArticle:
     handler: handler.deleteArticle
@@ -186,8 +185,7 @@ functions:
           path: /api/articles/{slug}
           method: delete
           cors: true
-          authorizer:
-            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+          authorizer: auth
           
   addCommentToArticle:
     handler: handler.addCommentToArticle

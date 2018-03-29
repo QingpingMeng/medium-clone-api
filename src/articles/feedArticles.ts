@@ -2,7 +2,6 @@ import { Handler, Context, Callback } from 'aws-lambda';
 import { connectToDatabase } from '../common/db';
 import { User } from '../models/User';
 import { Article } from '../models/Article';
-import { validateToken } from '../auth/authorizer';
 
 export const feedArticles: Handler = (
     event: any,
@@ -14,11 +13,7 @@ export const feedArticles: Handler = (
     console.log(limit, offset);
     connectToDatabase()
         .then(() => {
-            return validateToken(event.headers.authorization)
-                .then(decoded => {
-                    return User.findById(decoded.id).exec();
-                })
-                .catch(() => Promise.resolve(undefined));
+            return User.findById(event.requestContext.authorizer.principalId).exec();
         })
         .then(user => {
             if (!user) {

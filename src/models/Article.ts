@@ -1,5 +1,5 @@
 import { Document, Schema, Model, model } from 'mongoose';
-import { IUser, IUserModel } from './User';
+import { IUserModel } from './User';
 import { IComment } from './Comment';
 
 const uniqueValidator = require('mongoose-unique-validator');
@@ -13,7 +13,7 @@ export interface IArticle {
     favCount: number;
     comments: IComment[];
     tagList: string[];
-    author: IUser;
+    author: IUserModel;
 }
 
 export interface IArticleModel extends IArticle, Document {

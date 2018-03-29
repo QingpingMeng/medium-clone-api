@@ -10,6 +10,8 @@ export { listArticles } from './src/articles/listArticles';
 export { createArticle } from './src/articles/createArticle';
 export { getArticle } from './src/articles/getArticle';
 export { feedArticles } from './src/articles/feedArticles';
+export { updateArticle } from './src/articles/updateArticle';
+export { deleteArticle } from './src/articles/deleteArticle';
 
 require('dotenv').config({ path: './variables.env' });
 
