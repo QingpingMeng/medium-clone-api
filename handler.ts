@@ -12,6 +12,9 @@ export { getArticle } from './src/articles/getArticle';
 export { feedArticles } from './src/articles/feedArticles';
 export { updateArticle } from './src/articles/updateArticle';
 export { deleteArticle } from './src/articles/deleteArticle';
+export { addCommentToArticle } from './src/articles/addCommentToArticle';
+export { getCommentsFromArticle } from './src/articles/getCommentsFromArticle';
+export { deleteComment } from './src/articles/deleteComment';
 
 require('dotenv').config({ path: './variables.env' });
 
@@ -48,20 +51,4 @@ const getTags = (event: any, context: Context, callback: Callback) => {
     // callback(null, { message: 'Go Serverless v1.0! Your function executed successfully!', event });
 };
 
-const getCommentsFromArticle = (
-    event: any,
-    context: Context,
-    callback: Callback
-) => {
-    const response: HelloResponse = {
-        statusCode: 200,
-        body: JSON.stringify({ comments: [] })
-    };
-
-    callback(undefined, response);
-
-    // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-    // callback(null, { message: 'Go Serverless v1.0! Your function executed successfully!', event });
-};
-
-export { hello, getTags, getCommentsFromArticle };
+export { hello, getTags };

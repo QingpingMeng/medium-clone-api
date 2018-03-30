@@ -194,8 +194,7 @@ functions:
           path: /api/articles/{slug}/comments
           method: post
           cors: true
-          authorizer:
-            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+          authorizer: auth
 
   getCommentsFromArticle:
     handler: handler.getCommentsFromArticle
@@ -210,10 +209,9 @@ functions:
     events:
       - http:
           path: /api/articles/{slug}/comments/{id}
-          method: get
+          method: delete
           cors: true
-          authorizer:
-            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+          authorizer: auth
 
   favoriteArticle:
     handler: handler.favoriteArticle

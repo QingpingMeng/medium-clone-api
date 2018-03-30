@@ -1,14 +1,16 @@
 import { Document, Schema, Model, model } from 'mongoose';
-import { IUser } from './User';
+import { IUser, IUserModel } from './User';
 import { IArticle } from './Article';
 
 export interface IComment {
     body: string;
-    author: IUser;
+    author: IUserModel;
     article: IArticle;
 }
 
-export interface ICommentModel extends IComment, Document {}
+export interface ICommentModel extends IComment, Document {
+    toJSONFor: (user?: IUser) => ICommentModel;
+}
 
 export const CommentSchema = new Schema(
     {

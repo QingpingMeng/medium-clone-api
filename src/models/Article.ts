@@ -1,6 +1,6 @@
 import { Document, Schema, Model, model } from 'mongoose';
 import { IUserModel } from './User';
-import { IComment } from './Comment';
+import { ICommentModel } from './Comment';
 
 const uniqueValidator = require('mongoose-unique-validator');
 const slug = require('slug');
@@ -11,7 +11,7 @@ export interface IArticle {
     description: string;
     body: string;
     favCount: number;
-    comments: IComment[];
+    comments: ICommentModel[] & {remove: (id: string) => void};
     tagList: string[];
     author: IUserModel;
 }
