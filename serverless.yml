@@ -220,8 +220,7 @@ functions:
           path: /api/articles/{slug}/favorite
           method: post
           cors: true
-          authorizer:
-            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+          authorizer: auth
 
   unfavoriteArticle:
     handler: handler.unfavoriteArticle

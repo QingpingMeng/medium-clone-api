@@ -15,6 +15,7 @@ export { deleteArticle } from './src/articles/deleteArticle';
 export { addCommentToArticle } from './src/articles/addCommentToArticle';
 export { getCommentsFromArticle } from './src/articles/getCommentsFromArticle';
 export { deleteComment } from './src/articles/deleteComment';
+export { favoriteArticle } from './src/articles/favoriteArticle';
 
 require('dotenv').config({ path: './variables.env' });
 

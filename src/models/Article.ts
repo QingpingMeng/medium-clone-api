@@ -1,5 +1,5 @@
 import { Document, Schema, Model, model } from 'mongoose';
-import { IUserModel } from './User';
+import { IUserModel, User } from './User';
 import { ICommentModel } from './Comment';
 
 const uniqueValidator = require('mongoose-unique-validator');
@@ -11,7 +11,7 @@ export interface IArticle {
     description: string;
     body: string;
     favCount: number;
-    comments: ICommentModel[] & {remove: (id: string) => void};
+    comments: ICommentModel[] & { remove: (id: string) => void };
     tagList: string[];
     author: IUserModel;
 }
@@ -19,6 +19,7 @@ export interface IArticle {
 export interface IArticleModel extends IArticle, Document {
     toJSONFor: (user?: IUserModel) => IArticleModel;
     slugify: () => string;
+    updateFavoriteCount: () => Promise<IArticleModel>;
 }
 
 export const ArticleSchema = new Schema(
@@ -52,6 +53,18 @@ ArticleSchema.methods.slugify = function() {
         ((Math.random() * Math.pow(36, 6)) | 0).toString(36);
 };
 
+ArticleSchema.methods.updateFavoriteCount = function() {
+    const article = this;
+
+    return User.count({ favorites: { $in: [article._id] } }).then(function(
+        count
+    ) {
+        article.favoritesCount = count;
+
+        return article.save();
+    });
+};
+
 ArticleSchema.methods.toJSONFor = function(user?: IUserModel) {
     return {
         slug: this.slug,
@@ -61,7 +74,7 @@ ArticleSchema.methods.toJSONFor = function(user?: IUserModel) {
         createdAt: this.createdAt,
         updatedAt: this.updatedAt,
         tagList: this.tagList,
-        favorited: user ? /* user.isFavorite(this._id) */ true : false,
+        favorited: user ? user.isFavorite(this._id) : false,
         favoritesCount: this.favoritesCount,
         author: this.author.toProfileJSONFor(user)
     };

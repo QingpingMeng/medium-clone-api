@@ -32,6 +32,8 @@ export interface IUserModel extends IUser, Document {
     follow: (userId: string) => Promise<Document>;
     unfollow: (userId: string) => Promise<Document>;
     isFollowing: (userId: string) => boolean;
+    favorite: (articleId: string) => Promise<Document>;
+    isFavorite: (articleId: string) => boolean;
 }
 
 export const UserSchema = new Schema(
@@ -110,7 +112,7 @@ UserSchema.methods.toProfileJSONFor = function(user: IUserModel) {
         image:
             this.image ||
             'https://static.productionready.io/images/smiley-cyrus.jpg',
-        following: user ?  user.isFollowing(this._id) : false
+        following: user ? user.isFollowing(this._id) : false
     };
 };
 
@@ -121,14 +123,23 @@ UserSchema.methods.follow = function(id: string) {
     return this.save();
 };
 
-UserSchema.methods.unfollow = function(id: string) {
-  this.following.remove(id);
-  return this.save();
+UserSchema.methods.favorite = function(id: string) {
+    if (this.favorites.indexOf(id) === -1) {
+        this.favorites.push(id);
+    }
+
+    return this.save();
 };
 
 UserSchema.methods.isFollowing = function(id: string): boolean {
     return this.following.some(function(followId: string) {
         return followId.toString() === id.toString();
+    });
+};
+
+UserSchema.methods.isFavorite = function(articleId: string) {
+    return this.favorites.some(function(favoriteId: string) {
+        return favoriteId.toString() === articleId.toString();
     });
 };
 
