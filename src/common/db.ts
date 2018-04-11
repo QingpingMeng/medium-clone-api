@@ -7,7 +7,7 @@ export const connectToDatabase = () => {
     }
 
     const defaultDb = `mongodb://test_dev:adminpassword@ds135234.mlab.com:35234/medium-clone`;
-    const dbUri: string = process.env.DB || defaultDb;
+    const dbUri: string = defaultDb;
     console.log(dbUri);
     return connect(dbUri).then((db: Mongoose) => {
         isConnected = db.connection.readyState == 1; // 1 for connected

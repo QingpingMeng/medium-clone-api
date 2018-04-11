@@ -10,3 +10,5 @@ jspm_packages
 
 variables.env
 src/.DS_Store
+.DS_Store
+yarn-error.log

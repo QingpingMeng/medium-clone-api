@@ -29,10 +29,11 @@ export interface IUserModel extends IUser, Document {
     validPassword: (password: string) => boolean;
     toAuthJSON: () => IUser;
     toProfileJSONFor: (user?: IUser) => IProfile;
-    follow: (userId: string) => Promise<Document>;
-    unfollow: (userId: string) => Promise<Document>;
+    follow: (userId: string) => Promise<IUserModel>;
+    unfollow: (userId: string) => Promise<IUserModel>;
     isFollowing: (userId: string) => boolean;
-    favorite: (articleId: string) => Promise<Document>;
+    favorite: (articleId: string) => Promise<IUserModel>;
+    unfavorite: (articleId: string) => Promise<IUserModel>;
     isFavorite: (articleId: string) => boolean;
 }
 
@@ -128,6 +129,11 @@ UserSchema.methods.favorite = function(id: string) {
         this.favorites.push(id);
     }
 
+    return this.save();
+};
+
+UserSchema.methods.unfavorite = function(articleId: string) {
+    this.favorites.remove(articleId);
     return this.save();
 };
 

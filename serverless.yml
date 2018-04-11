@@ -62,10 +62,7 @@ provider:
 #    - exclude-me.js
 #    - exclude-me-dir/**
 package:
-  exclude:
-    - node_modules/**/*
-  include:
-    handler.ts
+  excludeDevDependencies: true
 
 functions:
   auth:
@@ -229,8 +226,7 @@ functions:
           path: /api/articles/{slug}/favorite
           method: delete
           cors: true
-          authorizer:
-            arn: arn:aws:cognito-idp:us-west-2:306200350248:userpool/us-west-2_0TnEaCnSV
+          authorizer: auth
 
   getTags:
     handler: handler.getTags
