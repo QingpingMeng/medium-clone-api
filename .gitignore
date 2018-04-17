@@ -7,8 +7,10 @@ jspm_packages
 
 # ts artificacts
 .build
+.webpack
 
 variables.env
 src/.DS_Store
 .DS_Store
 yarn-error.log
+env.yml

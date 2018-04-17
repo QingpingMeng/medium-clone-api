@@ -6,7 +6,8 @@ export const connectToDatabase = () => {
         return Promise.resolve();
     }
 
-    const defaultDb = process.env.db || 'mongodb://localhost/conduit';
+    console.log('env:', process.env.db);
+    const defaultDb = process.env.db || 'mongodb://localhost:27017';
     const dbUri: string = defaultDb;
     console.log(dbUri);
     return connect(dbUri).then((db: Mongoose) => {
