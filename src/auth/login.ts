@@ -7,6 +7,7 @@ export const login: Handler = (
     context: Context,
     callback: Callback
 ) => {
+    context.callbackWaitsForEmptyEventLoop = false;
     const body = JSON.parse(event.body);
     const { email, password } = body.user;
     if (!email) {

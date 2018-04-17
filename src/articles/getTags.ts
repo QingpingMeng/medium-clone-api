@@ -7,6 +7,7 @@ export const getTags: Handler = (
     context: Context,
     callback: Callback
 ) => {
+    context.callbackWaitsForEmptyEventLoop = false;
     connectToDatabase()
         .then(() =>
             Article.find()

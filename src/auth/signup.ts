@@ -12,7 +12,7 @@ export const signup: Handler = (
     user.email = body.user.email;
     user.username = body.user.username;
     user.setPassword(body.user.password);
-
+    context.callbackWaitsForEmptyEventLoop = false;
     connectToDatabase()
         .then(() => user.save())
         .then(() => {
@@ -23,6 +23,7 @@ export const signup: Handler = (
             return callback(undefined, response);
         })
         .catch(error => {
+            console.error(error);
             const { errors } = error;
             Object.keys(errors).map(key => {
                 errors[key] = [errors[key].message];

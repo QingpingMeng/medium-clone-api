@@ -9,6 +9,7 @@ export const listArticles: Handler = (
     context: Context,
     callback: Callback
 ) => {
+    context.callbackWaitsForEmptyEventLoop = false;
     let { limit, offset } = event.queryStringParameters;
     const {
         tag: queryTag,

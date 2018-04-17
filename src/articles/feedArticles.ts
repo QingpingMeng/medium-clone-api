@@ -8,9 +8,9 @@ export const feedArticles: Handler = (
     context: Context,
     callback: Callback
 ) => {
+    context.callbackWaitsForEmptyEventLoop = false;
     const limit = event.queryStringParameters.limit || 20;
     const offset = event.queryStringParameters.offset || 0;
-    console.log(limit, offset);
     connectToDatabase()
         .then(() => {
             return User.findById(event.requestContext.authorizer.principalId).exec();

@@ -7,6 +7,7 @@ export const followUser: Handler = (
     context: Context,
     callback: Callback
 ) => {
+    context.callbackWaitsForEmptyEventLoop = false;
     connectToDatabase()
         .then(() => {
             return Promise.all([

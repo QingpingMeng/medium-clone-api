@@ -14,7 +14,7 @@
 service: medium-clone-api
 
 plugins:
-  - serverless-plugin-typescript
+  - serverless-webpack
   - serverless-offline
 
 # You can pin your service to only deploy with a specific Serverless version
@@ -26,7 +26,8 @@ provider:
   runtime: nodejs6.10
   memorySize: 128 # set the maximum memory of the Lambdas in Megabytes
   timeout: 10 # the timeout is 10 seconds (default is 6 seconds)
-  stage: dev # setting the env stage to dev, this will be visible in the routes
+  stage: ${opt:stage, 'dev'} # setting the env stage to dev, this will be visible in the routes
+  environment: ${file(./env.yml):${opt:stage, self:provider.stage}}
   region: us-east-1
 
 # you can overwrite defaults here
@@ -68,13 +69,6 @@ functions:
   auth:
     handler: handler.authorizer
     cors: true
-
-  hello:
-    handler: handler.hello
-    events:
-      - http:
-          path: api/hello
-          method: get
       
   login:
     handler: handler.login

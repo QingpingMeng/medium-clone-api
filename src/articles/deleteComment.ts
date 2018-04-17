@@ -9,6 +9,7 @@ export const deleteComment: Handler = (
     context: Context,
     callback: Callback
 ) => {
+    context.callbackWaitsForEmptyEventLoop = false;
     connectToDatabase()
         .then(() => {
             return Promise.all([

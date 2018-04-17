@@ -9,6 +9,7 @@ export const getCommentsFromArticle: Handler = (
     context: Context,
     callback: Callback
 ) => {
+    context.callbackWaitsForEmptyEventLoop = false;
     connectToDatabase()
         .then(() => {
             return Promise.all([

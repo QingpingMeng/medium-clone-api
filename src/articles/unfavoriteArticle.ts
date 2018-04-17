@@ -8,6 +8,7 @@ export const unfavoriteArticle: Handler = (
     context: Context,
     callback: Callback
 ) => {
+    context.callbackWaitsForEmptyEventLoop = false;
     connectToDatabase()
         .then(() =>
             Promise.all([

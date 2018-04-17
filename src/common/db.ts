@@ -6,7 +6,7 @@ export const connectToDatabase = () => {
         return Promise.resolve();
     }
 
-    const defaultDb = `mongodb://test_dev:adminpassword@ds135234.mlab.com:35234/medium-clone`;
+    const defaultDb = process.env.db || 'mongodb://localhost/conduit';
     const dbUri: string = defaultDb;
     console.log(dbUri);
     return connect(dbUri).then((db: Mongoose) => {

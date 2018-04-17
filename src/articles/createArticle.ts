@@ -8,6 +8,7 @@ export const createArticle: Handler = (
     context: Context,
     callback: Callback
 ) => {
+    context.callbackWaitsForEmptyEventLoop = false;
     connectToDatabase()
         .then(() =>
             User.findById(event.requestContext.authorizer.principalId).exec()

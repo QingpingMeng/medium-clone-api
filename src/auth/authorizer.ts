@@ -17,6 +17,7 @@ export const authorizer: Handler = (
     validateToken(token)
         .then(decoded => {
             console.log(decoded);
+            console.log('Arn allowed:', event.methodArn);
             return callback(
                 undefined,
                 generatePolicy(decoded.id, 'Allow', event.methodArn)
@@ -51,6 +52,10 @@ const generatePolicy = (
     effect: string,
     resource: string
 ): CustomAuthorizerResult => {
+    const path = resource.split(':');
+    path[5] = '*';
+    resource = path.join(':');
+    console.log('new resource:', resource);
     const authResponse: AuthResponse = {
         principalId,
         policyDocument: {

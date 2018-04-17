@@ -8,7 +8,7 @@ export const currentUser: Handler = (
     context: Context,
     callback: Callback
 ) => {
-    console.log(context);
+    context.callbackWaitsForEmptyEventLoop = false;
     connectToDatabase()
         .then(() =>
             User.findById(event.requestContext.authorizer.principalId).exec()

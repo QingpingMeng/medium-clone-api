@@ -8,6 +8,7 @@ export const getProfile: Handler = (
     context: Context,
     callback: Callback
 ) => {
+    context.callbackWaitsForEmptyEventLoop = false;
     console.log('auth:', event.authorizationToken);
     connectToDatabase()
         .then(() => {
