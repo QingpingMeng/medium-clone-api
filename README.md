@@ -1,4 +1,4 @@
-# Project Title
+# Serverless Typescript + Mongodb implementation for RealWorld example
 
 > ### Example Django DRF codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld-example-apps) API spec.
 
