@@ -26,7 +26,7 @@ provider:
   runtime: nodejs6.10
   memorySize: 128 # set the maximum memory of the Lambdas in Megabytes
   timeout: 10 # the timeout is 10 seconds (default is 6 seconds)
-  stage: ${opt:stage, 'dev'} # setting the env stage to dev, this will be visible in the routes
+  stage: ${opt:stage, 'local'} # setting the env stage to dev, this will be visible in the routes
   environment: ${file(./env.yml):${opt:stage, self:provider.stage}}
   region: us-east-1
 

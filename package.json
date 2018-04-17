@@ -14,7 +14,7 @@
     "build-ts": "tsc",
     "test": "newman run ./tests/api-tests.postman.json -e ./tests/env-api-tests.postman.json",
     "start": "./node_modules/.bin/serverless offline -s local --skipCacheInvalidation",
-    "deploy:prod": "./node_modules/.bin/serverless --stage prod",
+    "deploy": "./node_modules/.bin/serverless deploy --stage prod",
     "debug": "export SLS_DEBUG=* && node --inspect ./node_modules/.bin/serverless offline -s dev --skipCacheInvalidation"
   },
   "devDependencies": {
