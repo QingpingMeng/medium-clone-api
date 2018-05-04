@@ -2,8 +2,9 @@ import { Handler, Context, Callback } from 'aws-lambda';
 import { connectToDatabase } from '../common/db';
 import { User } from '../models/User';
 import { Article } from '../models/Article';
+import { enableCors } from '../common/cors';
 
-export const favoriteArticle: Handler = (
+const favoriteArticle: Handler = (
     event: any,
     context: Context,
     callback: Callback
@@ -51,3 +52,5 @@ export const favoriteArticle: Handler = (
         })
         .catch(error => callback(error));
 };
+
+export default enableCors(favoriteArticle);

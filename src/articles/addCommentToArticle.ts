@@ -3,8 +3,9 @@ import { connectToDatabase } from '../common/db';
 import { User } from '../models/User';
 import { Article } from '../models/Article';
 import { Comment } from '../models/Comment';
+import { enableCors } from '../common/cors';
 
-export const addCommentToArticle: Handler = (
+const addCommentToArticle: Handler = (
     event: any,
     context: Context,
     callback: Callback
@@ -66,3 +67,5 @@ export const addCommentToArticle: Handler = (
         })
         .catch(error => callback(error));
 };
+
+export default enableCors(addCommentToArticle);

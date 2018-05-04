@@ -2,12 +2,13 @@ import { Mongoose, connect } from 'mongoose';
 let isConnected: boolean = false;
 
 export const connectToDatabase = () => {
+    console.log('Start connecting db...');
     if (isConnected) {
         return Promise.resolve();
     }
 
     console.log('env:', process.env.db);
-    const defaultDb = process.env.db || 'mongodb://localhost:27017';
+    const defaultDb = process.env.db || 'mongodb://test_dev:adminpassword@ds135234.mlab.com:35234/medium-clone';
     const dbUri: string = defaultDb;
     console.log(dbUri);
     return connect(dbUri).then((db: Mongoose) => {

@@ -3,8 +3,9 @@ import { connectToDatabase } from '../common/db';
 import { User } from '../models/User';
 import { Article } from '../models/Article';
 import { Comment } from '../models/Comment';
+import { enableCors } from '../common/cors';
 
-export const deleteComment: Handler = (
+const deleteComment: Handler = (
     event: any,
     context: Context,
     callback: Callback
@@ -60,3 +61,5 @@ export const deleteComment: Handler = (
         })
         .catch(error => callback(error));
 };
+
+export default enableCors(deleteComment);

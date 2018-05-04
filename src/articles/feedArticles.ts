@@ -2,8 +2,9 @@ import { Handler, Context, Callback } from 'aws-lambda';
 import { connectToDatabase } from '../common/db';
 import { User } from '../models/User';
 import { Article } from '../models/Article';
+import { enableCors } from '../common/cors';
 
-export const feedArticles: Handler = (
+const feedArticles: Handler = (
     event: any,
     context: Context,
     callback: Callback
@@ -46,3 +47,5 @@ export const feedArticles: Handler = (
             });
         });
 };
+
+export default enableCors(feedArticles);

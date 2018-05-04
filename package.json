@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "jsonwebtoken": "^8.2.0",
+    "middy": "^0.13.1",
     "mongoose": "^5.0.9",
     "mongoose-unique-validator": "^2.0.0",
     "slug": "^0.9.1"

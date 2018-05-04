@@ -3,8 +3,9 @@ import { connectToDatabase } from '../common/db';
 import { User } from '../models/User';
 import { Article } from '../models/Article';
 import { validateToken } from '../auth/authorizer';
+import { enableCors } from '../common/cors';
 
-export const getArticle: Handler = (
+const getArticle: Handler = (
     event: any,
     context: Context,
     callback: Callback
@@ -37,3 +38,5 @@ export const getArticle: Handler = (
             });
         });
 };
+
+export default enableCors(getArticle);

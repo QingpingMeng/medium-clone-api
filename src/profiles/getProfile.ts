@@ -2,8 +2,9 @@ import { Handler, Context, Callback } from 'aws-lambda';
 import { validateToken } from '../auth/authorizer';
 import { User } from '../models/User';
 import { connectToDatabase } from '../common/db';
+import { enableCors } from '../common/cors';
 
-export const getProfile: Handler = (
+const getProfile: Handler = (
     event: any,
     context: Context,
     callback: Callback
@@ -48,3 +49,5 @@ export const getProfile: Handler = (
             });
         });
 };
+
+export default enableCors(getProfile);

@@ -1,12 +1,14 @@
 import { Handler, Context, Callback } from 'aws-lambda';
 import { User } from '../models/User';
 import { connectToDatabase } from '../common/db';
+import { enableCors } from '../common/cors';
 
-export const signup: Handler = (
+const signup: Handler = (
     event: any,
     context: Context,
     callback: Callback
 ) => {
+    console.log('Enter signup function');
     const body = JSON.parse(event.body);
     const user = new User();
     user.email = body.user.email;
@@ -36,3 +38,5 @@ export const signup: Handler = (
             });
         });
 };
+
+export default enableCors(signup);

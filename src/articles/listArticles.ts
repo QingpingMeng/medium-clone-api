@@ -3,8 +3,9 @@ import { connectToDatabase } from '../common/db';
 import { User } from '../models/User';
 import { Article } from '../models/Article';
 import { validateToken } from '../auth/authorizer';
+import { enableCors } from '../common/cors';
 
-export const listArticles: Handler = (
+const listArticles: Handler = (
     event: any,
     context: Context,
     callback: Callback
@@ -77,3 +78,6 @@ export const listArticles: Handler = (
     // Use this code if you don't use the http event with the LAMBDA-PROXY integration
     // callback(null, { message: 'Go Serverless v1.0! Your function executed successfully!', event });
 };
+
+export default enableCors(listArticles);
+

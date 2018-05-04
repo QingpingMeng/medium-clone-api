@@ -7,8 +7,9 @@ import {
 } from 'aws-lambda';
 import * as jwt from 'jsonwebtoken';
 import { secret } from '../config';
+import { enableCors } from '../common/cors';
 
-export const authorizer: Handler = (
+const authorizer: Handler = (
     event: any,
     context: Context,
     callback: Callback
@@ -71,3 +72,5 @@ const generatePolicy = (
     };
     return authResponse;
 };
+
+export default enableCors(authorizer);

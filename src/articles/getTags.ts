@@ -1,8 +1,9 @@
 import { Handler, Context, Callback } from 'aws-lambda';
 import { connectToDatabase } from '../common/db';
 import { Article } from '../models/Article';
+import { enableCors } from '../common/cors';
 
-export const getTags: Handler = (
+const getTags: Handler = (
     event: any,
     context: Context,
     callback: Callback
@@ -23,3 +24,5 @@ export const getTags: Handler = (
         )
         .catch(error => callback(error));
 };
+
+export default enableCors(getTags);

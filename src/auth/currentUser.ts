@@ -1,9 +1,10 @@
 import { Handler, Context, Callback } from 'aws-lambda';
 import { connectToDatabase } from '../common/db';
 import { User, IUserModel } from '../models/User';
+import { enableCors } from '../common/cors';
 // import { connectToDatabase } from '../common/db';
 
-export const currentUser: Handler = (
+const currentUser: Handler = (
     event: any,
     context: Context,
     callback: Callback
@@ -24,3 +25,5 @@ export const currentUser: Handler = (
             }
         });
 };
+
+export default enableCors(currentUser);

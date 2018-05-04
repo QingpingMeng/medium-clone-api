@@ -18,6 +18,10 @@
   version "0.0.33"
   resolved "https://registry.yarnpkg.com/@types/aws-lambda/-/aws-lambda-0.0.33.tgz#17083d9c569048792f4f33ef6cd6aaf54d5b22d3"
 
+"@types/aws-lambda@^8.10.1":
+  version "8.10.3"
+  resolved "https://registry.yarnpkg.com/@types/aws-lambda/-/aws-lambda-8.10.3.tgz#ced41eb465181d941f64cefef514b1ee9d0491e0"
+
 "@types/bson@*":
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/@types/bson/-/bson-1.0.7.tgz#c7dc60b561e8556ae9442e07ce4d01e34651d4d8"
@@ -35,6 +39,10 @@
 "@types/graphql@0.10.2":
   version "0.10.2"
   resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-0.10.2.tgz#d7c79acbaa17453b6681c80c34b38fcb10c4c08c"
+
+"@types/http-errors@^1.6.1":
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@types/http-errors/-/http-errors-1.6.1.tgz#367744a6c04b833383f497f647cc3690b0cd4055"
 
 "@types/jsonwebtoken@^7.2.5":
   version "7.2.5"
@@ -100,6 +108,14 @@ agent-base@2:
     extend "~3.0.0"
     semver "~5.0.1"
 
+ajv-i18n@^3.1.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/ajv-i18n/-/ajv-i18n-3.2.0.tgz#8e29ee8f53fe8984bcdfaa9003f75998d0fe607c"
+
+ajv-keywords@^3.0.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.2.0.tgz#e86b819c602cf8821ad637413698f1dec021847a"
+
 ajv-keywords@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.1.0.tgz#ac2b27939c543e95d2c06e7f7f5c27be4aa543be"
@@ -120,7 +136,7 @@ ajv@^5.1.0:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.3.0"
 
-ajv@^6.1.0:
+ajv@^6.0.0, ajv@^6.1.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.4.0.tgz#d3aff78e9277549771daf0164cff48482b754fc6"
   dependencies:
@@ -1018,6 +1034,10 @@ constants-browserify@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/constants-browserify/-/constants-browserify-1.0.0.tgz#c20b96d8c617748aaf1c16021760cd27fcb8cb75"
 
+content-type@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/content-type/-/content-type-1.0.4.tgz#e138cc75e040c727b1966fe5e5f8c9aee256fe3b"
+
 content@3.x.x:
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/content/-/content-3.0.7.tgz#0cbb88e82702d35ccf59800b8add609bb5c1dfc2"
@@ -1258,6 +1278,10 @@ delayed-stream@~1.0.0:
 delegates@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
+
+depd@~1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
 
 des.js@^1.0.0:
   version "1.0.0"
@@ -2089,6 +2113,15 @@ htmlparser2@^3.9.0:
     inherits "^2.0.1"
     readable-stream "^2.0.2"
 
+http-errors@^1.6.2:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-1.6.3.tgz#8b55680bb4be283a0b5bf4ea2e38580be1d9320d"
+  dependencies:
+    depd "~1.1.2"
+    inherits "2.0.3"
+    setprototypeof "1.1.0"
+    statuses ">= 1.4.0 < 2"
+
 http-reasons@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/http-reasons/-/http-reasons-0.1.0.tgz#a953ca670078669dde142ce899401b9d6e85d3b4"
@@ -2519,6 +2552,10 @@ json-loader@^0.5.4:
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/json-loader/-/json-loader-0.5.7.tgz#dca14a70235ff82f0ac9a3abeb60d337a365185d"
 
+json-mask@^0.3.8:
+  version "0.3.8"
+  resolved "https://registry.yarnpkg.com/json-mask/-/json-mask-0.3.8.tgz#2d66415de14b0e8bc6c1514554a90bfca8356941"
+
 json-refs@^2.1.5:
   version "2.1.7"
   resolved "https://registry.yarnpkg.com/json-refs/-/json-refs-2.1.7.tgz#b9eb01fe29f5ea3e92878f15aea10ad38b5acf89"
@@ -2885,6 +2922,22 @@ micromatch@^3.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.2"
 
+middy@^0.13.1:
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/middy/-/middy-0.13.1.tgz#01369230e1f0d920b4bff5b95efdb29330f8e7fe"
+  dependencies:
+    "@types/aws-lambda" "^8.10.1"
+    "@types/http-errors" "^1.6.1"
+    ajv "^6.0.0"
+    ajv-i18n "^3.1.0"
+    ajv-keywords "^3.0.0"
+    content-type "^1.0.4"
+    http-errors "^1.6.2"
+    json-mask "^0.3.8"
+    negotiator "^0.6.1"
+    qs "^6.5.0"
+    querystring "^0.2.0"
+
 miller-rabin@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/miller-rabin/-/miller-rabin-4.0.1.tgz#f080351c865b0dc562a8462966daa53543c78a4d"
@@ -3065,6 +3118,10 @@ nanomatch@^1.2.9:
 native-promise-only@^0.8.1:
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/native-promise-only/-/native-promise-only-0.8.1.tgz#20a318c30cb45f71fe7adfbf7b21c99c1472ef11"
+
+negotiator@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
 neo-async@^2.5.0:
   version "2.5.0"
@@ -3659,7 +3716,7 @@ punycode@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.0.tgz#5f863edc89b96db09074bad7947bf09056ca4e7d"
 
-qs@^6.5.1:
+qs@^6.5.0, qs@^6.5.1:
   version "6.5.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
 
@@ -3671,7 +3728,7 @@ querystring-es3@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/querystring-es3/-/querystring-es3-0.2.1.tgz#9ec61f79049875707d69414596fd907a4d711e73"
 
-querystring@0.2.0:
+querystring@0.2.0, querystring@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
 
@@ -4105,6 +4162,10 @@ setimmediate@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/setimmediate/-/setimmediate-1.0.5.tgz#290cbb232e306942d7d7ea9b83732ab7856f8285"
 
+setprototypeof@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.1.0.tgz#d0bd85536887b6fe7c0d818cb962d9d91c54e656"
+
 sha.js@^2.4.0, sha.js@^2.4.8:
   version "2.4.11"
   resolved "https://registry.yarnpkg.com/sha.js/-/sha.js-2.4.11.tgz#37a5cf0b81ecbc6943de109ba2960d1b26584ae7"
@@ -4321,6 +4382,10 @@ static-extend@^0.1.1:
   dependencies:
     define-property "^0.2.5"
     object-copy "^0.1.0"
+
+"statuses@>= 1.4.0 < 2":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
 
 stream-browserify@^2.0.1:
   version "2.0.1"
