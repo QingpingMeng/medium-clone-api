@@ -124,6 +124,11 @@ UserSchema.methods.follow = function(id: string) {
     return this.save();
 };
 
+UserSchema.methods.unfollow = function(id: string) {
+    this.following.remove(id);
+    return this.save();
+};
+
 UserSchema.methods.favorite = function(id: string) {
     if (this.favorites.indexOf(id) === -1) {
         this.favorites.push(id);
