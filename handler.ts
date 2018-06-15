@@ -17,3 +17,4 @@ export { default as deleteComment } from './src/articles/deleteComment';
 export { default as favoriteArticle } from './src/articles/favoriteArticle';
 export { default as unfavoriteArticle } from './src/articles/unfavoriteArticle';
 export { default as getTags } from './src/articles/getTags';
+export { default as updateUser } from './src/auth/updateUser';

@@ -237,6 +237,15 @@ functions:
           path: /api/users/
           method: post
           cors: true
+  
+  updateUser:
+    handler: handler.updateUser
+    events:
+      - http:
+          path: /api/user/
+          method: put
+          cors: true
+          authorizer: auth
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
