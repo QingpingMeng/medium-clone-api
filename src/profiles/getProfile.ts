@@ -10,14 +10,14 @@ const getProfile: Handler = (
     callback: Callback
 ) => {
     context.callbackWaitsForEmptyEventLoop = false;
-    console.log('auth:', event.authorizationToken);
+    console.log('pathParameters', event.pathParameters);
     connectToDatabase()
         .then(() => {
             return Promise.all([
                 User.findOne({
                     username: event.pathParameters.username
                 }).exec(),
-                validateToken(event.headers.authorization)
+                validateToken(event.headers && event.headers.authorization)
                     .then(decoded => {
                         console.log('decode', decoded);
                         return User.findById(decoded.id).exec();
@@ -36,16 +36,16 @@ const getProfile: Handler = (
             if (!self) {
                 return callback(undefined, {
                     statusCode: 200,
-                    body: {
+                    body: JSON.stringify({
                         profile: target.toProfileJSONFor()
-                    }
+                    })
                 });
             }
             return callback(undefined, {
                 statusCode: 200,
-                body: {
+                body: JSON.stringify({
                     profile: target.toProfileJSONFor(self)
-                }
+                })
             });
         });
 };

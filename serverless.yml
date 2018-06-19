@@ -94,6 +94,10 @@ functions:
           path: /api/profiles/{username}
           cors: true
           method: get
+          request:
+            parameters:
+              paths:
+                username: true
 
   followUser:
     handler: handler.followUser
@@ -103,6 +107,10 @@ functions:
           method: post
           cors: true
           authorizer: auth
+          request:
+            parameters:
+              paths:
+                username: true
         
   unfollowUser:
     handler: handler.unfollowUser
@@ -112,6 +120,10 @@ functions:
           method: delete
           cors: true
           authorizer: auth
+          request:
+            parameters:
+              paths:
+                username: true
         
   listArticles:
     handler: handler.listArticles
@@ -150,6 +162,10 @@ functions:
           path: /api/articles/{slug}
           method: get
           cors: true
+          request:
+            parameters:
+              paths:
+                slug: true
 
   createArticle:
     handler: handler.createArticle
@@ -168,6 +184,10 @@ functions:
           method: put
           cors: true
           authorizer: auth
+          request:
+            parameters:
+              paths:
+                slug: true
 
   deleteArticle:
     handler: handler.deleteArticle
@@ -177,6 +197,10 @@ functions:
           method: delete
           cors: true
           authorizer: auth
+          request:
+            parameters:
+              paths:
+                slug: true
           
   addCommentToArticle:
     handler: handler.addCommentToArticle
@@ -186,6 +210,10 @@ functions:
           method: post
           cors: true
           authorizer: auth
+          request:
+            parameters:
+              paths:
+                slug: true
 
   getCommentsFromArticle:
     handler: handler.getCommentsFromArticle
@@ -194,6 +222,10 @@ functions:
           path: /api/articles/{slug}/comments
           method: get
           cors: true
+          request:
+            parameters:
+              paths:
+                slug: true
 
   deleteComment:
     handler: handler.deleteComment
@@ -203,6 +235,11 @@ functions:
           method: delete
           cors: true
           authorizer: auth
+          request:
+            parameters:
+              paths:
+                slug: true
+                id: true
 
   favoriteArticle:
     handler: handler.favoriteArticle
@@ -212,6 +249,10 @@ functions:
           method: post
           cors: true
           authorizer: auth
+          request:
+            parameters:
+              paths:
+                slug: true
 
   unfavoriteArticle:
     handler: handler.unfavoriteArticle
@@ -221,6 +262,10 @@ functions:
           method: delete
           cors: true
           authorizer: auth
+          request:
+            parameters:
+              paths:
+                slug: true
 
   getTags:
     handler: handler.getTags

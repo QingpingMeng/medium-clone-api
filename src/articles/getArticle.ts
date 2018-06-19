@@ -15,7 +15,7 @@ const getArticle: Handler = (
         .then(() =>
             Promise.all([
                 Article.findOne({ slug: event.pathParameters.slug }).populate('author').exec(),
-                validateToken(event.headers.authorization)
+                validateToken(event.headers && event.headers.authorization)
                     .then(decoded => {
                         console.log('decode', decoded);
                         return User.findById(decoded.id).exec();

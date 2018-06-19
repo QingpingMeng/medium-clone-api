@@ -10,7 +10,7 @@ export interface IArticle {
     title: string;
     description: string;
     body: string;
-    favCount: number;
+    favoritesCount: number;
     comments: ICommentModel[] & { remove: (id: string) => void };
     tagList: string[];
     author: IUserModel;

@@ -55,7 +55,7 @@ const listArticles: Handler = (
                     .populate('author')
                     .exec(),
                 Article.count(query).exec(),
-                validateToken(event.headers.authorization).then(decoded =>
+                validateToken(event.headers && event.headers.authorization).then(decoded =>
                     User.findById(decoded.id).exec()
                 ).catch(() => Promise.resolve(undefined))
             ]);

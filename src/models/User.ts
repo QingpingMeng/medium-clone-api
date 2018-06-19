@@ -130,15 +130,18 @@ UserSchema.methods.unfollow = function(id: string) {
 };
 
 UserSchema.methods.favorite = function(id: string) {
+    console.log('Favorites before:', this.favorites);
     if (this.favorites.indexOf(id) === -1) {
         this.favorites.push(id);
     }
-
+    console.log('Favorites after:', this.favorites);
     return this.save();
 };
 
 UserSchema.methods.unfavorite = function(articleId: string) {
+    console.log('unfavorites before:', this.favorites);
     this.favorites.remove(articleId);
+    console.log('unfavorites after:', this.favorites);
     return this.save();
 };
 
