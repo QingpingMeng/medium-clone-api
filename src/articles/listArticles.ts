@@ -55,12 +55,19 @@ const listArticles: Handler = (
                     .populate('author')
                     .exec(),
                 Article.count(query).exec(),
-                validateToken(event.headers && event.headers.authorization).then(decoded =>
-                    User.findById(decoded.id).exec()
-                ).catch(() => Promise.resolve(undefined))
+                validateToken(event.headers && (event.headers.authorization || event.headers.Authorization))
+                    .then(decoded => {
+                        console.log('ListArticle decoded:', decoded);
+                        return User.findById(decoded.id).exec();
+                    })
+                    .catch(() => {
+                        console.log('ListArticle get current user failed. Event header:', event.headers);
+                        return Promise.resolve(undefined);
+                    })
             ]);
         })
         .then(([articles, articlesCount, currentUser]) => {
+            console.log(`ListArticle: Current user: ${currentUser}`);
             return callback(undefined, {
                 statusCode: 200,
                 body: JSON.stringify({
@@ -80,4 +87,3 @@ const listArticles: Handler = (
 };
 
 export default enableCors(listArticles);
-

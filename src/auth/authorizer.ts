@@ -8,6 +8,7 @@ import {
 import * as jwt from 'jsonwebtoken';
 import { secret } from '../config';
 import { enableCors } from '../common/cors';
+import { decode } from 'punycode';
 
 const authorizer: Handler = (
     event: any,
@@ -29,21 +30,27 @@ const authorizer: Handler = (
 
 export const validateToken = (token: string) => {
     if (!token) {
+        console.log(`ValidateToken Failed: token does'n exist`);
         return Promise.reject(undefined);
     }
 
     const tokenParts = token.split(' ');
     const tokenValue = tokenParts[1];
 
+    console.log(`Token parts:`, tokenParts);
+
     if (!tokenValue) {
         // no auth token!
+        console.log('ValidateToken failed: no token value');
         return Promise.reject(false);
     }
 
     try {
         const decoded = jwt.verify(tokenValue, secret) as { id: string };
+        console.log('Verify token value successfull:', decode);
         return Promise.resolve(decoded);
     } catch (error) {
+        console.log('Verify token value failed:', error);
         return Promise.reject(undefined);
     }
 };
