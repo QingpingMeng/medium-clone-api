@@ -2,7 +2,7 @@
 
 > ### Example Serverless Typescript codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld-example-apps) API spec.
 
-## [Demo](https://https://medium.azurewebsites.net/)
+## [Demo](https://medium.azurewebsites.net/)
 
 ## Getting Started
 
