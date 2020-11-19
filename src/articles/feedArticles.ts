@@ -27,12 +27,12 @@ const feedArticles: Handler = (
             console.log(user.following);
             return Promise.all([
                 Promise.resolve(user),
-                Article.find({ author: { $in: user.following } })
+                Article.find({ 'author._id': {$in: user.following} })
                     .limit(Number(limit))
                     .skip(Number(offset))
                     .populate('author')
                     .exec(),
-                Article.count({ author: { $in: user.following } }).exec()
+                Article.count({ 'author._id': {_id: {$in: user.following}}}).exec()
             ]);
         })
         .then(([user, articles, articlesCount]) => {

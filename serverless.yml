@@ -23,7 +23,7 @@ plugins:
 
 provider:
   name: aws
-  runtime: nodejs6.10
+  runtime: nodejs12.x
   memorySize: 384 # set the maximum memory of the Lambdas in Megabytes
   timeout: 10 # the timeout is 10 seconds (default is 6 seconds)
   stage: ${opt:stage, 'local'} # setting the env stage to dev, this will be visible in the routes
